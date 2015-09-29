@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        		
+        <!-- CSS -->
+        <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    </head>
+    <body ng-app="MyApp">
+		
+		<!-- DatasouceJS Diretive -->
+		<!-- rows-per-page="-1" will prevent add limit and offset control -->
+		<datasource name="Users" entity="http://jsonplaceholder.typicode.com/users" keys="id" rows-per-page="-1"></datasource>
+		<datasource name="ToDo" entity="http://jsonplaceholder.typicode.com/todos" filter="?userId={{Users.active.id}}" keys="id" rows-per-page="-1"></datasource>
+		
+		<div class="container-fluid">
+			<h1>Master datasource</h1>
+			<p>Example showing one datasource being filtered by another one.</p>
+			<p>A new request is triggered each time the datasource active row is changed.</p>
+			
+			<br/>
+			
+			<div class="row">
+				<div class="col-sm-6">
+					<h4>Posts</h4>
+					<table class="table table-bordered" datasource-name="Users">
+					  <!-- Isolated scope for Posts -->
+					  <thead>
+						<tr>
+						  <th>Name</th>
+						  <th>Email</th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<!-- datasource === Posts -->
+						<tr ng-repeat= "item in datasource.data"
+							ng-click = "datasource.active = item"
+							ng-class = "{info : (datasource.active === item)}" >
+						  <td>{{item.name}}</td>
+						  <td>{{item.email}}</td>
+						</tr>
+					  </tbody>
+					</table>
+				</div>
+				<div class="col-sm-6">
+					<h4>Comments</h4>
+					<table class="table table-bordered" datasource-name="ToDo">
+					  <!-- Isolated scope for Comments -->
+					  <thead>
+						<tr>
+						  <th>Title</th>
+						  <th>Completed</th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<!-- datasource === Posts -->
+						<tr ng-repeat= "item in datasource.data">
+						  <td>{{item.title}}</td>
+						  <td>{{item.completed}}</td>
+						</tr>
+					  </tbody>
+					</table>
+				</div>
+			</div>
+			
+		</div>
+
+        <!-- Plugins -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+
+        <!-- DatasourceJS -->
+        <script src="../dist/datasource.js"></script>
+		
+		<!-- Your custom JS code -->
+		<script src="code.js"></script>
+
+    </body>
+</html>

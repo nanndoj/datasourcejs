@@ -1,0 +1,18 @@
+{
+  "name": "datasourcejs",
+  "version": "0.0.1",
+  "homepage": "https://github.com/nanndoj/datasourcejs",
+  "authors": [
+    "Fernando <nanndoj@gmail.com>"
+  ],
+  "description": "A simple and powerful way to work with RESTFull services from AngularJS applications",
+  "main": "dist/datasource.min.js",
+  "keywords": [
+    "angularjs",
+    "rest",
+    "CRUD",
+    "diretive",
+    "services"
+  ],
+  "license": "MIT"
+}

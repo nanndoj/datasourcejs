@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        		
+        <!-- CSS -->
+        <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    </head>
+    <body ng-app="MyApp">
+		
+		<!-- DatasouceJS Diretive -->
+		<!-- rows-per-page="-1" will prevent add limit and offset control -->
+		<datasource name="Posts" entity="http://jsonplaceholder.typicode.com/comments" filter="?email={{filter.text}}" keys="id" rows-per-page="-1"></datasource>
+		
+		<div class="container-fluid">
+			<h1>Using filter attribute</h1>
+			<p>Example using <code>filter</code> attribute.</p>
+			<p>A new request is triggered each time the filter attribute changes.</p>
+			
+			<br/>
+			<p><strong>Type:</strong> <code>Jayne_Kuhic@sydney.com</code> or <code>Meghan_Littel@rene.us</code> or <code>Maynard.Hodkiewicz@roberta.com</code></p>
+			
+			<div class="form-group">
+				<label for="FilterInput">Email</label>
+				<div>
+				  <input type="email" class="form-control" ng-model="filter.text" id="FilterInput" placeholder="Type one of the emails listed above">
+				</div>
+			</div>
+	  
+			<table class="table table-bordered">
+			  <thead>
+				<tr>
+				  <th>#</th>
+				  <th>Name</th>
+				  <th>Email</th>
+				  <th>Comment</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<!-- Here is the magic -->
+				<!-- You can just call the datasource by its name -->
+				<tr ng-repeat="item in Posts.data">
+				  <th scope="row">{{item.id}}</th>
+				  <td>{{item.name}}</td>
+				  <td>{{item.email}}</td>
+				  <td>{{item.body}}</td>
+				</tr>
+			  </tbody>
+			</table>
+		</div>
+
+        <!-- Plugins -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+
+        <!-- DatasourceJS -->
+        <script src="../dist/datasource.js"></script>
+		
+		<!-- Your custom JS code -->
+		<script src="code.js"></script>
+
+    </body>
+</html>

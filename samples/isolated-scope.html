@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        		
+        <!-- CSS -->
+        <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    </head>
+    <body ng-app="MyApp">
+		
+		<!-- DatasouceJS Diretive -->
+		<!-- rows-per-page="-1" will prevent add limit and offset control -->
+		<datasource name="Users" entity="http://jsonplaceholder.typicode.com/users" keys="id" rows-per-page="-1"></datasource>
+		
+		<div class="container-fluid">
+			<h1>Isolated Scope</h1>
+			<p>Using <code>datasource-name</code> attribute will create an isolated scope</p>
+			<p>You can use <code>datasource</code> variable inside the created scope</p>
+			
+			<form datasource-name="Users">
+			  <!-- Isolated Scope -->
+			  <div class="form-group" ng-show="datasource.editing || datasource.inserting">
+				<button class="btn btn-success" ng-click="datasource.post()">Save</button>
+				<button class="btn btn-default" ng-click="datasource.cancel()">Cancel</button>
+			  </div>
+			  <div class="form-group" ng-show="!datasource.editing && !datasource.inserting">
+				<button class="btn btn-primary" ng-click="datasource.startInserting()">New</button>
+				<button class="btn btn-primary" ng-click="datasource.startEditing()">Edit</button>
+				<button class="btn btn-default" ng-disabled="!datasource.hasPrevious()"ng-click="datasource.previous()">Previous</button>
+				<button class="btn btn-default" ng-disabled="!datasource.hasNext()" ng-click="datasource.next()">Next</button>
+				<button class="btn btn-danger" ng-click="datasource.remove()">Delete</button>
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputName">Name</label>
+				<input type="text" class="form-control" ng-model="datasource.active.name" id="exampleInputName" placeholder="Name">
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputEmail1">Email address</label>
+				<input type="email" ng-model="datasource.active.email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputUserName">Username</label>
+				<input type="text" ng-model="datasource.active.username" class="form-control" id="exampleInputUserName" placeholder="Username">
+			  </div>
+			  <!-- End of Isolated Scope -->
+			</form>
+		</div>
+
+        <!-- Plugins -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+
+        <!-- DatasourceJS -->
+        <script src="../dist/datasource.js"></script>
+		
+		<!-- Your custom JS code -->
+		<script src="code.js"></script>
+
+    </body>
+</html>

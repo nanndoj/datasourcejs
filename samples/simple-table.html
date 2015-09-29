@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        		
+        <!-- CSS -->
+        <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    </head>
+    <body ng-app="MyApp">
+		
+		<!-- DatasouceJS Diretive -->
+		<!-- rows-per-page="-1" will prevent add limit and offset control -->
+		<datasource name="Posts" entity="http://jsonplaceholder.typicode.com/posts" keys="id" rows-per-page="-1"></datasource>
+		
+		<h1>Simple Data Listing</h1>
+		<p>Example using <code>&lt;datasource&gt;</code> diretive to get data from a REST service and render on a Boostrap table</p>
+		<table class="table table-bordered">
+		  <thead>
+			<tr>
+			  <th>#</th>
+			  <th>Title</th>
+			  <th>Body</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<!-- Here is the magic -->
+			<!-- You can just call the datasource by its name -->
+			<tr ng-repeat="item in Posts.data">
+			  <th scope="row">{{item.id}}</th>
+			  <td>{{item.title}}</td>
+			  <td>{{item.body}}</td>
+			</tr>
+		  </tbody>
+		</table>
+
+        <!-- Plugins -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+
+        <!-- DatasourceJS -->
+        <script src="../dist/datasource.js"></script>
+		
+		<!-- Your custom JS code -->
+		<script src="code.js"></script>
+
+    </body>
+</html>

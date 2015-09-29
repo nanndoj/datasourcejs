@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        		
+        <!-- CSS -->
+        <!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    </head>
+    <body ng-app="MyApp">
+		
+		<!-- DatasouceJS Diretive -->
+		<!-- rows-per-page="-1" will prevent add limit and offset control -->
+		<datasource name="Users" entity="http://jsonplaceholder.typicode.com/users" keys="id" rows-per-page="-1"></datasource>
+		
+		<div class="container-fluid">
+			<h1>CRUD Form</h1>
+			<p>Sample using <code>&lt;datasource&gt;</code> diretive create a CRUD Form</p>
+			<p>It automatically handles POST, PUT and DELETE methods</p>
+			
+			<form>
+			  <div class="form-group" ng-show="Users.editing || Users.inserting">
+			    <!-- Save and Cancel buttons -->
+				<!-- It will be shown if the datasource is on editing or inserting mode -->
+				<button class="btn btn-success" ng-click="Users.post()">Save</button>
+				<button class="btn btn-default" ng-click="datasource.cancel()">Cancel</button>
+			  </div>
+			  <div class="form-group" ng-show="!Users.editing && !Users.inserting">
+			    <!-- Default navigation buttons -->
+				<!-- It will be shown if the datasource is on normal mode -->
+				<button class="btn btn-primary" ng-click="Users.startInserting()">New</button>
+				<button class="btn btn-primary" ng-click="Users.startEditing()">Edit</button>
+				<button class="btn btn-default" ng-disabled="!Users.hasPrevious()"ng-click="Users.previous()">Previous</button>
+				<button class="btn btn-default" ng-disabled="!Users.hasNext()" ng-click="Users.next()">Next</button>
+				<button class="btn btn-danger" ng-click="Users.remove()">Delete</button>
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputName">Name</label>
+				<input type="text" class="form-control" ng-model="Users.active.name" id="exampleInputName" placeholder="Name">
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputEmail1">Email address</label>
+				<input type="email" ng-model="Users.active.email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputUserName">Username</label>
+				<input type="text" ng-model="Users.active.username" class="form-control" id="exampleInputUserName" placeholder="Username">
+			  </div>
+			  
+			</form>
+		</div>
+
+        <!-- Plugins -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+
+        <!-- DatasourceJS -->
+        <script src="../dist/datasource.js"></script>
+		
+		<!-- Your custom JS code -->
+		<script src="code.js"></script>
+
+    </body>
+</html>
