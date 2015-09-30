@@ -1,0 +1,26 @@
+{
+  "name": "datasourcejs",
+  "version": "0.0.1",
+  "description": "A simple and powerful way to work with RESTFull services from AngularJS applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nanndoj/datasourcejs.git"
+  },
+  "keywords" : [
+	"angularjs",
+    "rest",
+    "CRUD",
+    "diretive",
+    "services"
+  ],
+  "author": "Fernando <nanndoj@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nanndoj/datasourcejs/issues"
+  },
+  "homepage": "https://github.com/nanndoj/datasourcejs#readme"
+}

@@ -8,17 +8,16 @@
             2,
             "single"
         ],
-        "linebreak-style": [
-            2,
-            "windows"
-        ],
         "semi": [
             2,
             "always"
         ]
     },
     "env": {
-        "browser": true
+        "node": true
+    },
+    "globals": {
+        "angular": true
     },
     "extends": "eslint:recommended"
 }

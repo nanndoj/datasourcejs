@@ -1,1 +1,1 @@
-var app = angular.module('MyApp', ['datasourcejs']);
+angular.module('MyApp', ['datasourcejs']);
