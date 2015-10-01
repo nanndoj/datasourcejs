@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/nanndoj/datasourcejs.git"
   },
-  "keywords" : [
-	"angularjs",
+  "keywords": [
+    "angularjs",
     "rest",
     "CRUD",
     "diretive",
@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/nanndoj/datasourcejs/issues"
   },
-  "homepage": "https://github.com/nanndoj/datasourcejs#readme"
+  "homepage": "https://github.com/nanndoj/datasourcejs#readme",
+  "devDependencies": {
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.10",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6"
+  }
 }

@@ -17,7 +17,8 @@
         "node": true
     },
     "globals": {
-        "angular": true
+        "angular": true,
+        "window" : true
     },
     "extends": "eslint:recommended"
 }
