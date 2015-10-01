@@ -1,6 +1,6 @@
 # datasource.js
 
-A simple way to work with RESTFull backends from AngularJS apps.
+The ultimate way to interact with RESTFull backends from javascript clients.
 
 ## Install
 
