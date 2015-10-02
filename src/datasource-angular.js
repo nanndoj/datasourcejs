@@ -1,4 +1,4 @@
-var Datasource = require('./datasource.js');
+var Datasource = require('./core/datasource.js');
 
 angular.module('datasourcejs',[])
 
@@ -13,7 +13,7 @@ angular.module('datasourcejs',[])
     */
   this.storeDatasource = function (datasource) {
     this.datasources[datasource.name] = datasource;
-  },
+  };
 
   /**
   * Initialize a new datasource
