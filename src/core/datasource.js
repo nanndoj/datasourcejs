@@ -46,7 +46,7 @@ module.exports = function(name) {
       call: function(url, verb, object) {
         var _callback;
         busy = true;
-        
+
         // Get an ajax promise
         this.$promise = _self.request(verb, url, object, _callback)
         .then(
@@ -294,6 +294,7 @@ module.exports = function(name) {
       then : function(successCallback, errorCallback) {
         _onSuccess = successCallback || _onSuccess;
         _onError = errorCallback || _onError;
+        return promise;
       }
     };
 
@@ -319,7 +320,7 @@ module.exports = function(name) {
       }
     }
 
-    request.send(body || '');
+    request.send((body) ? JSON.stringify(body) : null);
 
     return promise;
   };
@@ -542,7 +543,6 @@ module.exports = function(name) {
     // Success Handler
     var sucessHandler = function (data) {
       if(data) {
-        
         if(Object.prototype.toString.call( data ) !== '[object Array]' ) {
           data = [data];
         }

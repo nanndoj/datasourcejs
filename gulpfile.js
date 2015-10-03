@@ -2,7 +2,8 @@
 
 var paths = {
   SOURCE : './src/',
-  DIST : './dist/'
+  DIST : './dist/',
+  TEST : './test/'
 };
 
 var browserify = require('browserify');
@@ -13,8 +14,9 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 var gutil = require('gulp-util');
+var mocha = require('gulp-mocha');
 
-gulp.task('javascript', function () {
+gulp.task('javascript', ['test'], function () {
   // set up the browserify instance on a task basis
   var b = browserify({
     entries: './src/datasource-angular.js',
@@ -42,8 +44,14 @@ gulp.task('watch', ['javascript'], function() {
   gulp.watch(paths.SOURCE + '**/*.js', ['javascript']);
 });
 
-gulp.task('clean', ['javascript'], function() {
-  gulp.watch(paths.SOURCE + '**/*.js', ['javascript']);
+gulp.task('watch-tests', function() {
+  gulp.watch(paths.TEST + '**/*.spec.js', ['test']);
+});
+ 
+gulp.task('test', function () {
+  return gulp.src('test/**/*.spec.js', {read: false})
+      // gulp-mocha needs filepaths so you can't have any plugins before it 
+      .pipe(mocha());
 });
 
-gulp.task('default', ['javascript', 'watch']);
+gulp.task('default', ['javascript', 'watch', 'watch-tests']);
